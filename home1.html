@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREAST CANCER DETECTION</title>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/pink-ribbon-symbol-international-world-breast-cancer-day-pink-background_1150-26457.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            width: 70%;
+            max-height: 80%;
+            overflow-y: auto;
+            animation: fadeIn 1.5s ease-in-out;
+            border: 2px solid #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #FF1493;
+            font-size: 1.5em;
+            animation: slideIn 1s ease-out;
+            margin-bottom: 20px;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .form-group label, .form-group input {
+            width: 45%;
+            margin: 5px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #FF1493;
+            box-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+        }
+
+        input[type="submit"] {
+            background-color: #FF1493;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+
+        img {
+            margin-top: 20px;
+            width: 260px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 1.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>BREAST CANCER DETECTION</h1>
+
+        <form id="breast-cancer-form" method="POST" action="{{ url_for('home') }}">
+            <div class="form-group">
+                <label for="radius_mean">Radius Mean:</label>
+                <input type="text" id="radius_mean" name="radius_mean" placeholder="Enter radius mean" required>
+                <label for="texture_mean">Texture Mean:</label>
+                <input type="text" id="texture_mean" name="texture_mean" placeholder="Enter texture mean" required>
+            </div>
+            <div class="form-group">
+                <label for="perimeter_mean">Perimeter Mean:</label>
+                <input type="text" id="perimeter_mean" name="perimeter_mean" placeholder="Enter perimeter mean" required>
+                <label for="area_mean">Area Mean:</label>
+                <input type="text" id="area_mean" name="area_mean" placeholder="Enter area mean" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_mean">Smoothness Mean:</label>
+                <input type="text" id="smoothness_mean" name="smoothness_mean" placeholder="Enter smoothness mean" required>
+                <label for="compactness_mean">Compactness Mean:</label>
+                <input type="text" id="compactness_mean" name="compactness_mean" placeholder="Enter compactness mean" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_mean">Concavity Mean:</label>
+                <input type="text" id="concavity_mean" name="concavity_mean" placeholder="Enter concavity mean" required>
+                <label for="concave_points_mean">Concave Points Mean:</label>
+                <input type="text" id="concave_points_mean" name="concave_points_mean" placeholder="Enter concave points mean" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_mean">Symmetry Mean:</label>
+                <input type="text" id="symmetry_mean" name="symmetry_mean" placeholder="Enter symmetry mean" required>
+                <label for="fractal_dimension_mean">fractal_dimension Mean:</label>
+                <input type="text" id="fractal_dimension_mean" name="fractal_dimension_mean" placeholder="Enter fractal_dimension_mean" required>
+            </div>
+            <div class="form-group">
+                <label for="radius_se">Radius SE:</label>
+                <input type="text" id="radius_se" name="radius_se" placeholder="Enter radius SE" required>
+                <label for="texture_se">Texture SE:</label>
+                <input type="text" id="texture_se" name="texture_se" placeholder="Enter texture SE" required>
+            </div>
+            <div class="form-group">
+                <label for="perimeter_se">Perimeter SE:</label>
+                <input type="text" id="perimeter_se" name="perimeter_se" placeholder="Enter perimeter SE" required>
+                <label for="area_se">Area SE:</label>
+                <input type="text" id="area_se" name="area_se" placeholder="Enter area SE" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_se">Smoothness SE:</label>
+                <input type="text" id="smoothness_se" name="smoothness_se" placeholder="Enter smoothness SE" required>
+                <label for="compactness_se">Compactness SE:</label>
+                <input type="text" id="compactness_se" name="compactness_se" placeholder="Enter compactness SE" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_se">Concavity SE:</label>
+                <input type="text" id="concavity_se" name="concavity_se" placeholder="Enter concavity SE" required>
+                <label for="concave_points_se">Concave Points SE:</label>
+                <input type="text" id="concave_points_se" name="concave_points_se" placeholder="Enter concave points SE" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_se">Symmetry SE:</label>
+                <input type="text" id="symmetry_se" name="symmetry_se" placeholder="Enter symmetry SE" required>
+                <label for="fractal_dimension_se">Fractal Dimension SE:</label>
+                <input type="text" id="fractal_dimension_se" name="fractal_dimension_se" placeholder="Enter fractal dimension SE" required>
+            </div>
+            <div class="form-group">
+                <label for="radius_worst">Radius Worst:</label>
+                <input type="text" id="radius_worst" name="radius_worst" placeholder="Enter radius worst" required>
+                <label for="texture_worst">Texture Worst:</label>
+                <input type="text" id="texture_worst" name="texture_worst" placeholder="Enter texture worst" required>
+            </div>
+            <div class="form-group">
+                <label for="perimeter_worst">Perimeter Worst:</label>
+                <input type="text" id="perimeter_worst" name="perimeter_worst" placeholder="Enter perimeter worst" required>
+                <label for="area_worst">Area Worst:</label>
+                <input type="text" id="area_worst" name="area_worst" placeholder="Enter area worst" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_worst">Smoothness Worst:</label>
+                <input type="text" id="smoothness_worst" name="smoothness_worst" placeholder="Enter smoothness worst" required>
+                <label for="compactness_worst">Compactness Worst:</label>
+                <input type="text" id="compactness_worst" name="compactness_worst" placeholder="Enter compactness worst" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_worst">Concavity Worst:</label>
+                <input type="text" id="concavity_worst" name="concavity_worst" placeholder="Enter concavity worst" required>
+                <label for="concave_points_worst">Concave Points Worst:</label>
+                <input type="text" id="concave_points_worst" name="concave_points_worst" placeholder="Enter concave points worst" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_worst">Symmetry Worst:</label>
+                <input type="text" id="symmetry_worst" name="symmetry_worst" placeholder="Enter symmetry worst" required>
+                <label for="fractal_dimension_worst">Fractal Dimension Worst:</label>
+                <input type="text" id="fractal_dimension_worst" name="fractal_dimension_worst" placeholder="Enter fractal dimension worst" required>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        <img src="static/benign.jpeg" alt="Breast Cancer Awareness Image">
+    </div>
+</body>
+</html>
